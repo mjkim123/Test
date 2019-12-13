@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tixit.mapper.BoardMapper">
+
+    <insert id="create">
+ insert into homework(
+             title
+            ,content
+            ,writer
+            )values(
+            #{title}
+           ,#{content}
+           ,#{writer})
+ </insert>
+
+    <select id="read" resultType="com.tixit.domain.BoardVO">
+ select
+   bno, title,content,writer
+ from
+   homework
+ where bno = #{bno}
+ </select>
+
+    <update id="update">
+ update homework set title =#{title}, content =#{content}  , writer = #{writer}
+ where bno = #{bno}
+ </update>
+
+    <delete id="delete">
+ delete from homework where bno = #{bno}
+ </delete>
+
+    <select id="listAll" resultType="com.tixit.domain.BoardVO">
+ <![CDATA[
+ select
+   bno, title, content, writer
+ from
+  homework
+ where bno > 0
+ order by bno desc
+ ]]>
+
+ </select>
+</mapper>
